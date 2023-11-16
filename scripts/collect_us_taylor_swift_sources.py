@@ -2,7 +2,7 @@ import json,os, requests
 
 def collect_taylor_swift_sources(API_KEY):
     """
-    Collects all articles from US sources discussing Taylor Swift 
+    Collects all news sources from US discussing Taylor Swift 
     in the past month that have at least 1 article about them.
     """
 
