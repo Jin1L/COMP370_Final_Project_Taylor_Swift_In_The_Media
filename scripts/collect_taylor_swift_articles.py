@@ -12,7 +12,7 @@ def collect_taylor_swift_articles(API_KEY):
 
     for source in data:
 
-        # Set up the endpoint and parameters
+        # Set up the endpoint and parameters with Taylor Swift in the title
         endpoint = 'https://newsapi.org/v2/everything'
         params = {
             'language': 'en',
@@ -20,6 +20,7 @@ def collect_taylor_swift_articles(API_KEY):
             'sortBy': 'publishedAt',
             'apiKey': API_KEY,
             'q': 'Taylor Swift',
+            'searchIn': 'title'
         }
 
         # Make the request
