@@ -21,19 +21,20 @@ def filter_unique_titles(articles):
         if title not in UNIQUE_TITLES:
             UNIQUE_TITLES.add(title)
             unique_articles.append(article)
+        
 
     return unique_articles
 
 def revised_articles():
 
     path = os.path.join(os.getcwd(), "data")
-    with open ('{}/taylor_swift_articles.json'.format(path), 'r') as infile:
-        data = json.load(infile)
+    #with open ('{}/taylor_swift_articles.json'.format(path), 'r') as infile:
+     #   data = json.load(infile)
 
-    with open ('{}/mediastack_512filtered.json'.format(path), 'r') as infile:
+    with open ('{}/mediastack_oct28-nov28.json'.format(path), 'r') as infile:
         data2 = json.load(infile)
     
-    filtered_articles = filter_unique_titles(data)
+    #filtered_articles = filter_unique_titles(data)
     filtered_articles2 = filter_unique_titles(data2)
 
     # output into csv file with only title and description cols
@@ -41,16 +42,23 @@ def revised_articles():
 
         writer = csv.writer(outfile)
         writer.writerow(['Title', 'Description', 'Coding'])
+        count = 0
         
-        for article in filtered_articles:
-            title = article.get("title")
-            description = article.get("description")
-            writer.writerow([title, description])
+        # for article in filtered_articles:
+        #     title = article.get("title")
+        #     description = article.get("description")
+        #     writer.writerow([title, description])
 
         for article in filtered_articles2:
             title = article.get("title")
+            if 'Taylor Swift' not in title:
+                continue
             description = article.get("description")
             writer.writerow([title, description])
+            count += 1
+            if count == 500:
+                break
+        
     
 if __name__ == "__main__":
     #collect_us_sources(API_KEY=API_KEY)
