@@ -77,7 +77,7 @@ def calculate_tfidf(csvfile):
     # Select the top 10 wrods for each category
     top_words_by_category = {}
     for category in words_by_category:
-        top_words_by_category[category] = [word for word, _ in words_by_category[category][:10]]
+        top_words_by_category[category] = words_by_category[category][:10]
 
     return top_words_by_category
 
