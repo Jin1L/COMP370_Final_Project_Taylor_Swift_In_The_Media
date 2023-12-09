@@ -5,26 +5,26 @@ def main():
     with open(path, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         header = next(reader)
-        popularity_index = header.index("popularity")
+        polarity_index = header.index("polarity")
 
-        popularity = {}
+        polarity = {}
         # we have positive, negative, neutral
-        popularity["positive"] = 0
-        popularity["negative"] = 0
-        popularity["neutral"] = 0
+        polarity["positive"] = 0
+        polarity["negative"] = 0
+        polarity["neutral"] = 0
 
         for row in reader:
-            popularity[row[popularity_index]] += 1
+            polarity[row[polarity_index]] += 1
 
         # calculate percentages
-        total = popularity["positive"] + popularity["negative"] + popularity["neutral"]
-        popularity["positive"] = popularity["positive"] / total
-        popularity["negative"] = popularity["negative"] / total
-        popularity["neutral"] = popularity["neutral"] / total
+        total = polarity["positive"] + polarity["negative"] + polarity["neutral"]
+        polarity["positive"] = polarity["positive"] / total
+        polarity["negative"] = polarity["negative"] / total
+        polarity["neutral"] = polarity["neutral"] / total
 
         # write to json
-        with open('popularity.json', 'w') as file:
-            json.dump(popularity, file, indent=2)
+        with open('polarity.json', 'w') as file:
+            json.dump(polarity, file, indent=2)
 
 if __name__ == '__main__':
     main()
