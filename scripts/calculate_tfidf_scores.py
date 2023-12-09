@@ -74,9 +74,9 @@ def calculate_tfidf(csvfile):
     for category in words_by_category:
         words_by_category[category] = sorted(words_by_category[category].items(), key=lambda x: x[1], reverse=True)
 
-    # Select the top 10 wrods for each category and round the TF-IDF scores
+    # Select the top 10 wrods for each category and round the TF-IDF scores and sort the categories by category ID
     top_words_by_category = {}
-    for category in words_by_category:
+    for category in sorted(words_by_category.keys()):
         top_words_by_category[category] = [(word, round(tfidf, 2)) for word, tfidf in words_by_category[category][:10]]
 
     return top_words_by_category
